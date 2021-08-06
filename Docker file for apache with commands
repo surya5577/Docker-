@@ -1,0 +1,57 @@
+
+FROM ubuntu:18.04
+
+# Install dependencies
+RUN apt-get update && \
+ apt-get -y install apache2
+
+# Install apache and write hello world message
+RUN echo 'Hello World!' > /var/www/html/index.html
+
+# Configure apache
+RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh && \
+ echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh && \
+ echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh && \
+ echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh && \
+ chmod 755 /root/run_apache.sh
+
+EXPOSE 80
+
+CMD /root/run_apache.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+sudo yum update
+    2  clear
+    3  yum install docker.io
+    4  sudo amazon-linux-extras install docker
+    5  sudo yum install docker
+    6  sudo service docker start
+    7  sudo usermod -a -G docker ec2-user
+    8  touch Dockerfile
+    9  nano Dockerfile
+   10  docker build -t hello-world .
+   11  docker images
+   12  docker run -t -i -p 80:80 hello-world
+   13  docker run -t -di -p 80:80 hello-world
+   14  docker ps
+   15  docker stop e31fad74c955
+   16  docker ps
+   17  docker ps -a
+   18  clear
+   19  docker images
+   20  docker tag hello-world 557757/govarepo
+   21  docker login
+   22  docker push hello-world
+   23  docker push
+   24  docker push 557757/govarepo
